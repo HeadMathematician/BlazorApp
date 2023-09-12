@@ -1,0 +1,36 @@
+﻿@page "/ParentComponent"
+
+<h1 class="text-danger">Parent Child Component</h1>
+
+<CascadingValue Value="@messageForGrandChild">
+    <ChildComponent @ref="childComp"
+        OnClickBtnMethod="ShowMessage" 
+        Title="This title is passed as parameter from Parent Component">
+    <ChildContent>Render Fragment From Parent!</ChildContent>
+  
+    </ChildComponent>
+</CascadingValue>
+
+
+<AnotherChildComponent placeholder="Placeholder default"></AnotherChildComponent>
+
+
+
+<p><b>@messageText</b></p>
+
+<div>
+    <button class="btn btn-success" @onclick="() => childComp.ShowToastrSuccess()">Show Alert</button>
+</div>
+
+@code {
+    private ChildComponent childComp;
+
+    private string messageForGrandChild = "This is a message from Grand Parent";
+
+    private string messageText = "";
+
+    private void ShowMessage(MouseEventArgs e)
+    {
+        messageText = "Blazzing text from parent";
+    }
+}
